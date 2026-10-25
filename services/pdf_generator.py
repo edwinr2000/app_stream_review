@@ -1181,3 +1181,39 @@ def generar_pdf_pedido(
     buffer.seek(0)
 
     return buffer.getvalue()
+
+
+def generar_pdf_fecha_hora(fecha_hora):
+    """Genera un PDF sencillo con una fecha y hora con zona horaria."""
+    buffer = BytesIO()
+    doc = SimpleDocTemplate(
+        buffer,
+        pagesize=letter,
+        rightMargin=54,
+        leftMargin=54,
+        topMargin=72,
+        bottomMargin=54,
+    )
+    styles = getSampleStyleSheet()
+    title_style = ParagraphStyle(
+        "TituloFechaHora",
+        parent=styles["Title"],
+        textColor=colors.HexColor("#0F172A"),
+        spaceAfter=24,
+    )
+    body_style = ParagraphStyle(
+        "FechaHora",
+        parent=styles["Heading2"],
+        alignment=TA_CENTER,
+        textColor=colors.HexColor("#4F46E5"),
+    )
+    local_time = fecha_hora.astimezone(ZoneInfo("America/Bogota"))
+    story = [
+        Paragraph("Comprobante de fecha y hora", title_style),
+        Spacer(1, 36),
+        Paragraph(local_time.strftime("%d/%m/%Y %I:%M:%S %p"), body_style),
+        Spacer(1, 12),
+        Paragraph("Zona horaria: America/Bogota (UTC-5)", styles["Normal"]),
+    ]
+    doc.build(story)
+    return buffer.getvalue()

@@ -3,7 +3,9 @@ import pandas as pd
 import streamlit as st
 from services.db import init_connection
 from services.pdf_generator import generar_pdf_pedido
+from services.access_control import require_module_access
 
+require_module_access("gestion")
 st.title("🛒 Gestión de Pedidos y Facturación")
 
 supabase = init_connection()

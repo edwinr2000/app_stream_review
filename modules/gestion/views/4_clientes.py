@@ -1,7 +1,9 @@
 import pandas as pd
 import streamlit as st
 from services.db import init_connection
+from services.access_control import require_module_access
 
+require_module_access("gestion")
 st.title("👥 Gestión de Clientes")
 
 supabase = init_connection()

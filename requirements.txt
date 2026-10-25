@@ -33,11 +33,14 @@ propcache==0.5.2
 protobuf==7.36.1
 psycopg2-binary==2.9.12
 pyarrow==25.0.1
+qrcode[pil]==8.2
 pycparser==3.0
 pydantic==2.13.5
 pydantic_core==2.46.5
 pydeck==0.9.3
 PyJWT==2.13.0
+pypdf==6.21.2
+python-docx==1.2.0
 python-dateutil==2.9.0.post0
 python-multipart==0.0.32
 realtime==2.31.0
