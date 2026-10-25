@@ -5,6 +5,7 @@ import streamlit as st
 import plotly.express as px
 
 from services.db import init_connection
+from services.access_control import require_module_access
 
 
 # ============================================================
@@ -16,6 +17,7 @@ st.set_page_config(
     page_icon="📊",
     layout="wide",
 )
+require_module_access("gestion")
 
 
 # ============================================================
